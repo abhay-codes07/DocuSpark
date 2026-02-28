@@ -43,6 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        <a
+          href="#main-content"
+          className="focus-ring sr-only left-4 top-4 z-50 rounded-xl bg-white px-4 py-2 text-sm font-medium text-zinc-900 shadow-sm focus:not-sr-only focus:absolute"
+        >
+          Skip to content
+        </a>
         <Navbar />
         {children}
       </body>

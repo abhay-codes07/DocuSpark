@@ -8,19 +8,19 @@ import { Container } from "@/components/layout";
 import { primaryNavItems } from "@/config/navigation";
 import { NavLink } from "./nav-link";
 
+const SCROLL_THRESHOLD = 8;
+
 export function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 8);
-    };
+    const updateScrollState = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
   }, []);
 
   useEffect(() => {

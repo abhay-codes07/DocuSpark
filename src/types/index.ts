@@ -8,3 +8,5 @@ export type SiteConfig = {
     contact: string;
   };
 };
+
+export * from "./navigation";

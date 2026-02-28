@@ -1,4 +1,4 @@
-import type { NavItem } from "@/components/navigation/types";
+import type { NavItem } from "@/types/navigation";
 
 export const primaryNavItems: NavItem[] = [
   { label: "Home", href: "/" },

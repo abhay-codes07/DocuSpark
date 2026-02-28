@@ -104,7 +104,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               label={item.label}
-              className="ui-transition focus-ring rounded-xl px-4 py-3 text-base font-medium text-zinc-800 hover:bg-zinc-100"
+              className="ui-transition focus-ring rounded-xl px-4 py-3.5 text-base font-medium text-zinc-800 hover:bg-zinc-100"
               activeClassName="bg-zinc-100 text-zinc-900"
               onClick={() => setIsMobileOpen(false)}
             />

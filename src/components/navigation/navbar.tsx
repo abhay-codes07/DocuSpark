@@ -62,14 +62,14 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 label={item.label}
-                className="ui-transition focus-ring rounded-xl px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+                className="ui-transition focus-ring rounded-xl px-3 py-2 text-sm font-medium text-zinc-700 hover:-translate-y-px hover:bg-zinc-100"
                 activeClassName="bg-zinc-100 text-zinc-900"
               />
             ))}
           </nav>
           <button
             type="button"
-            className="focus-ring ui-transition inline-flex size-10 items-center justify-center rounded-xl border border-zinc-200 md:hidden"
+            className="focus-ring ui-transition inline-flex size-10 items-center justify-center rounded-xl border border-zinc-200 hover:border-zinc-300 hover:bg-white md:hidden"
             aria-label="Toggle menu"
             aria-controls="mobile-menu-panel"
             aria-expanded={isMobileOpen}
@@ -104,7 +104,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               label={item.label}
-              className="rounded-xl px-4 py-3 text-base font-medium text-zinc-800"
+              className="ui-transition focus-ring rounded-xl px-4 py-3 text-base font-medium text-zinc-800 hover:bg-zinc-100"
               activeClassName="bg-zinc-100 text-zinc-900"
               onClick={() => setIsMobileOpen(false)}
             />

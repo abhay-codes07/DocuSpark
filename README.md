@@ -37,3 +37,19 @@ npm run build
 2. Keep commits small and scoped.
 3. Use conventional commit messages (`feat:`, `fix:`, `refactor:`, `style:`, `chore:`, `docs:`).
 4. Open a PR to `develop` after validation checks pass.
+
+## Phase Delivery Rules
+
+- Implement work one phase at a time.
+- Keep the app buildable after every commit.
+- Push after each commit while working on a phase branch.
+- Merge phase branch into `develop` before starting the next phase.
+
+## Commit Convention
+
+- `feat:` new user-facing capability
+- `fix:` bug fix or accessibility correction
+- `refactor:` structural improvement without behavior change
+- `style:` visual or styling-only updates
+- `chore:` tooling, config, or maintenance
+- `docs:` documentation changes

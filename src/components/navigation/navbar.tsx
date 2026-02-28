@@ -86,10 +86,14 @@ export function Navbar() {
 
       <div
         className={`fixed inset-0 z-40 bg-zinc-950/30 md:hidden ${isMobileOpen ? "block" : "hidden"}`}
+        aria-hidden="true"
         onClick={() => setIsMobileOpen(false)}
       />
       <div
         id="mobile-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile menu"
         className={`fixed right-0 top-0 z-50 h-dvh w-72 border-l border-zinc-200 bg-white p-6 shadow-lg transition-transform duration-150 ease-out md:hidden ${
           isMobileOpen ? "translate-x-0" : "translate-x-full"
         }`}

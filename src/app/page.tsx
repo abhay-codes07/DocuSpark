@@ -4,7 +4,7 @@ import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } fro
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="page-fade-in min-h-screen bg-background text-foreground">
       <Container className="space-y-12 py-16 sm:py-20">
         <section aria-labelledby="hero-heading" className="space-y-4">
           <h1 id="hero-heading" className="text-3xl font-semibold tracking-tight sm:text-4xl">

@@ -37,6 +37,13 @@ export function Navbar() {
     setIsMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
   return (
     <header className="sticky top-0 z-40 border-b border-transparent">
       <Container>

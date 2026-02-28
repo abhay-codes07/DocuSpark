@@ -10,15 +10,15 @@ export function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40">
+    <header className="sticky top-0 z-40 border-b border-transparent">
       <Container>
-        <div className="flex h-16 items-center justify-between">
+        <div className="nav-shell flex h-16 items-center justify-between rounded-b-2xl px-1">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             DocuSpark
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
             {primaryNavItems.map((item) => (
-              <Link key={item.href} href={item.href} className="rounded-xl px-3 py-2 text-sm font-medium">
+              <Link key={item.href} href={item.href} className="ui-transition focus-ring rounded-xl px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100">
                 {item.label}
               </Link>
             ))}

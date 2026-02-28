@@ -57,3 +57,9 @@ body {
 .page-fade-in {
   animation: fade-in 220ms ease-out;
 }
+
+.nav-shell {
+  background: rgba(248, 250, 252, 0.9);
+  backdrop-filter: saturate(140%) blur(8px);
+}
+

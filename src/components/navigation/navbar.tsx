@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout";
 import { primaryNavItems } from "@/config/navigation";
+import { NavLink } from "./nav-link";
 
 export function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -57,13 +58,13 @@ export function Navbar() {
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
             {primaryNavItems.map((item) => (
-              <Link
+              <NavLink
                 key={item.href}
                 href={item.href}
+                label={item.label}
                 className="ui-transition focus-ring rounded-xl px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
-              >
-                {item.label}
-              </Link>
+                activeClassName="bg-zinc-100 text-zinc-900"
+              />
             ))}
           </nav>
           <button
@@ -95,14 +96,14 @@ export function Navbar() {
       >
         <nav aria-label="Mobile primary" className="mt-10 flex flex-col gap-2">
           {primaryNavItems.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
+              label={item.label}
               className="rounded-xl px-4 py-3 text-base font-medium text-zinc-800"
+              activeClassName="bg-zinc-100 text-zinc-900"
               onClick={() => setIsMobileOpen(false)}
-            >
-              {item.label}
-            </Link>
+            />
           ))}
         </nav>
       </div>

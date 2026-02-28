@@ -11,7 +11,8 @@ export default function Home() {
             DocuSpark
           </h1>
           <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-            Fast, clean, and reliable document tools. Phase 1 sets the foundation for the full product.
+            Fast, clean, and reliable document tools. Phase 1 sets the foundation for the full
+            product.
           </p>
           <Button className="ui-transition" size="lg">
             <Sparkles className="mr-2 size-4" aria-hidden="true" />
@@ -27,7 +28,8 @@ export default function Home() {
             <CardHeader>
               <CardTitle>Foundation Ready</CardTitle>
               <CardDescription>
-                Next.js, TypeScript, Tailwind, reusable UI primitives, and baseline SEO are in place.
+                Next.js, TypeScript, Tailwind, reusable UI primitives, and baseline SEO are in
+                place.
               </CardDescription>
             </CardHeader>
             <CardContent>

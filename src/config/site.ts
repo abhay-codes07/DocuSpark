@@ -1,8 +1,11 @@
 import type { SiteConfig } from "@/types";
 
+export const SITE_NAME = "DocuSpark";
+export const SITE_DESCRIPTION = "Modern document tools for everyday workflows.";
+
 export const siteConfig: SiteConfig = {
-  name: "DocuSpark",
-  description: "Modern document tools for everyday workflows.",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
   url: "https://docspark.app",
   ogImage: "/og-docspark.png",
   links: {

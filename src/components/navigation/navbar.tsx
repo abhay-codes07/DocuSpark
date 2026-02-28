@@ -45,6 +45,17 @@ export function Navbar() {
     };
   }, [isMobileOpen]);
 
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 border-b border-transparent">
       <Container>

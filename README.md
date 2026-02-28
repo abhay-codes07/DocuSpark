@@ -53,3 +53,10 @@ npm run build
 - `style:` visual or styling-only updates
 - `chore:` tooling, config, or maintenance
 - `docs:` documentation changes
+
+## Phase 2 Notes
+
+- Navbar is globally rendered from `src/app/layout.tsx`.
+- Desktop navigation appears at `md` and above.
+- Mobile navigation uses a right-side slide panel with overlay, Escape close, and route-change close.
+- Skip link support is enabled for keyboard users.

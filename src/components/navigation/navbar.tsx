@@ -2,7 +2,6 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout";
 import { primaryNavItems } from "@/config/navigation";
@@ -13,7 +12,6 @@ const SCROLL_THRESHOLD = 8;
 export function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const updateScrollState = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -33,10 +31,6 @@ export function Navbar() {
     window.addEventListener("keydown", onEscape);
     return () => window.removeEventListener("keydown", onEscape);
   }, []);
-
-  useEffect(() => {
-    setIsMobileOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? "hidden" : "";

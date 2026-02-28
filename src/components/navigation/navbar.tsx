@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/layout";
@@ -31,10 +31,34 @@ export function Navbar() {
             aria-expanded={isMobileOpen}
             onClick={() => setIsMobileOpen((value) => !value)}
           >
-            <Menu className="size-5" aria-hidden="true" />
+            {isMobileOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
       </Container>
+
+      <div
+        className={`fixed inset-0 z-40 bg-zinc-950/30 md:hidden ${isMobileOpen ? "block" : "hidden"}`}
+        onClick={() => setIsMobileOpen(false)}
+      />
+      <div
+        id="mobile-menu-panel"
+        className={`fixed right-0 top-0 z-50 h-dvh w-72 border-l border-zinc-200 bg-white p-6 shadow-lg transition-transform duration-150 ease-out md:hidden ${
+          isMobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <nav aria-label="Mobile primary" className="mt-10 flex flex-col gap-2">
+          {primaryNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-xl px-4 py-3 text-base font-medium text-zinc-800"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

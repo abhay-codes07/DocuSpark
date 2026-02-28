@@ -35,7 +35,7 @@ export function Button({
   return (
     <Comp
       className={cn(
-        "focus-ring ui-transition inline-flex items-center justify-center rounded-xl font-medium",
+        "focus-ring ui-transition inline-flex items-center justify-center rounded-xl font-medium disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],
         sizeClasses[size],
         className,

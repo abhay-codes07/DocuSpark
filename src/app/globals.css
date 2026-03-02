@@ -90,6 +90,14 @@ body {
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .how-step-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .hero-surface {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #e2e8f0;

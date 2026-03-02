@@ -23,6 +23,11 @@ export function HowItWorksSection() {
       return;
     }
 
+    if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -48,9 +53,15 @@ export function HowItWorksSection() {
         <p className="inline-flex rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-600">
           How it works
         </p>
-        <h2 id="how-it-works-heading" className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+        <h2
+          id="how-it-works-heading"
+          className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
+        >
           Three simple steps, from upload to done.
         </h2>
+        <p className="max-w-2xl text-base leading-7 text-zinc-600">
+          A focused process that keeps your files organized and your actions easy to follow.
+        </p>
       </div>
 
       <ol className="grid gap-4 md:grid-cols-3">

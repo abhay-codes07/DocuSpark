@@ -65,7 +65,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <p className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-600">
             {post.meta.readTime}
           </p>
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">{post.meta.title}</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+            {post.meta.title}
+          </h1>
           <p className="text-sm uppercase tracking-[0.12em] text-zinc-500">
             {formatBlogDate(post.meta.publishedAt)}
           </p>

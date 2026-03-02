@@ -1,7 +1,8 @@
 import type { BlogPostMeta, BlogPostModule } from "@/types";
 
 const postLoaders: Record<string, () => Promise<BlogPostModule>> = {
-  "merge-pdf-without-format-issues": () => import("@/content/blog/merge-pdf-without-format-issues.mdx"),
+  "merge-pdf-without-format-issues": () =>
+    import("@/content/blog/merge-pdf-without-format-issues.mdx"),
   "reduce-pdf-file-size-fast": () => import("@/content/blog/reduce-pdf-file-size-fast.mdx"),
   "image-to-pdf-mobile-scan-tips": () => import("@/content/blog/image-to-pdf-mobile-scan-tips.mdx"),
   "split-pdf-by-chapter": () => import("@/content/blog/split-pdf-by-chapter.mdx"),

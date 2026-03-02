@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ToolItem } from "@/types";
 import { getMockDurationMs, getMockResultName, getToolActionLabel } from "@/lib";
 import { ToolProgress, ToolUploader } from "@/components/tools";
@@ -18,6 +18,7 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const [compressionLevel, setCompressionLevel] = useState("balanced");
   const [pageSize, setPageSize] = useState("a4");
   const [password, setPassword] = useState("");
+  const intervalRef = useRef<number | null>(null);
 
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
@@ -41,19 +42,30 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
     const durationMs = getMockDurationMs(tool.mode);
     const startedAt = Date.now();
 
-    const interval = window.setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       const elapsed = Date.now() - startedAt;
       const nextValue = Math.min(100, Math.floor((elapsed / durationMs) * 100));
 
       setProgress(nextValue);
 
       if (nextValue >= 100) {
-        window.clearInterval(interval);
+        if (intervalRef.current) {
+          window.clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
         setIsProcessing(false);
         setResult(getMockResultName(tool.mode));
       }
     }, 120);
   }
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        window.clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   function renderModeOptions() {
     if (tool.mode === "split_pdf") {

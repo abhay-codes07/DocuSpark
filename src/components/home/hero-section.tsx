@@ -8,6 +8,7 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
+      aria-describedby="hero-description"
       className="hero-surface w-full rounded-3xl px-4 py-12 sm:px-8 sm:py-16"
     >
       <div className="mx-auto grid w-full max-w-5xl items-center gap-10 lg:grid-cols-2 lg:gap-12">
@@ -22,7 +23,10 @@ export function HeroSection() {
           >
             {heroContent.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-zinc-600 sm:text-lg lg:mx-0">
+          <p
+            id="hero-description"
+            className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-zinc-600 sm:text-lg lg:mx-0"
+          >
             {heroContent.description}
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row lg:justify-start">

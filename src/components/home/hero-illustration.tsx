@@ -2,7 +2,10 @@ import { FileText, ImageIcon, Sparkles } from "lucide-react";
 
 export function HeroIllustration() {
   return (
-    <div className="hero-illustration relative mx-auto w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+    <div
+      className="hero-illustration relative mx-auto w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm"
+      aria-hidden="true"
+    >
       <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-sky-100" aria-hidden="true" />
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">

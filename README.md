@@ -65,6 +65,12 @@ npm run build
 
 ## Phase 5 Notes
 
-- Added a 3-step ï¿½How It Worksï¿½ section with icon + text cards.
+- Added a 3-step “How It Works” section with icon + text cards.
 - Included scroll-triggered reveal animation using `IntersectionObserver`.
 - Added reduced-motion support and graceful fallback for non-supporting environments.
+
+## Phase 6 Notes
+
+- Added an auto-scrolling testimonials section with subtle motion and hover pause.
+- Added a responsive 4-card blog preview section on the homepage.
+- Added placeholder `/blog` and `/blog/[slug]` routes so preview links remain valid.

@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { blogPreviewPosts } from "@/config/blog-preview";
+import { getBlogPreviewPosts } from "@/lib";
 import { BlogPreviewCard } from "./blog-preview-card";
 
-export function BlogPreviewSection() {
+export async function BlogPreviewSection() {
+  const posts = await getBlogPreviewPosts(4);
+
   return (
     <section aria-labelledby="blog-preview-heading" className="space-y-6 py-16 sm:py-20">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -29,7 +31,7 @@ export function BlogPreviewSection() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {blogPreviewPosts.map((post) => (
+        {posts.map((post) => (
           <BlogPreviewCard key={post.slug} post={post} />
         ))}
       </div>

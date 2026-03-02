@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { BlogPreviewPost } from "@/types";
+import type { BlogPostMeta } from "@/types";
 
 type BlogPreviewCardProps = {
-  post: BlogPreviewPost;
+  post: BlogPostMeta;
 };
 
 export function BlogPreviewCard({ post }: BlogPreviewCardProps) {

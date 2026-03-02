@@ -13,5 +13,4 @@ export * from "./navigation";
 export * from "./tools";
 export * from "./how-it-works";
 export * from "./testimonial";
-export * from "./blog-preview";
 export * from "./blog";

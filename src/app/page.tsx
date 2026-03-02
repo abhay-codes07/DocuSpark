@@ -1,5 +1,5 @@
 import { Container } from "@/components/layout";
-import { HeroSection, ToolsGridSection } from "@/components/home";
+import { HeroSection, HowItWorksSection, ToolsGridSection } from "@/components/home";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
           <HeroSection />
         </div>
         <ToolsGridSection />
+        <HowItWorksSection />
       </Container>
     </main>
   );

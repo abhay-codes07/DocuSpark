@@ -11,7 +11,7 @@ export function ToolCard({ tool, icon }: ToolCardProps) {
   return (
     <Link
       href={tool.href}
-      className="tool-card focus-ring ui-transition group block rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-md"
+      className="tool-card focus-ring ui-transition group block rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md"
       aria-label={`${tool.title}: ${tool.description}`}
     >
       <div className="mb-4 inline-flex rounded-xl border border-sky-100 bg-sky-50 p-2 text-sky-600">{icon}</div>

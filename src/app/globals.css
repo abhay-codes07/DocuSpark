@@ -88,3 +88,9 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-illustration {
+    animation: none;
+  }
+}
+

@@ -22,7 +22,8 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
 
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
-  const canProcess = files.length >= tool.minFiles && files.length <= tool.maxFiles && !isProcessing;
+  const canProcess =
+    files.length >= tool.minFiles && files.length <= tool.maxFiles && !isProcessing;
   const fileHint =
     files.length < tool.minFiles
       ? `Add at least ${tool.minFiles} file(s) to continue.`
@@ -154,7 +155,12 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
         <p className="text-base leading-7 text-zinc-600">{tool.description}</p>
       </div>
 
-      <ToolUploader accept={tool.accept} maxFiles={tool.maxFiles} files={files} onFilesChange={setFiles} />
+      <ToolUploader
+        accept={tool.accept}
+        maxFiles={tool.maxFiles}
+        files={files}
+        onFilesChange={setFiles}
+      />
 
       <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600">
         Upload between {tool.minFiles} and {tool.maxFiles} file(s) to run this tool.

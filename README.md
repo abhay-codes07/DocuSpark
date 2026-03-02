@@ -66,7 +66,7 @@ npm run build
 
 ## Phase 5 Notes
 
-- Added a 3-step “How It Works” section with icon + text cards.
+- Added a 3-step ï¿½How It Worksï¿½ section with icon + text cards.
 - Included scroll-triggered reveal animation using `IntersectionObserver`.
 - Added reduced-motion support and graceful fallback for non-supporting environments.
 

@@ -17,7 +17,10 @@ export function ToolUploader({ accept, maxFiles, files, onFilesChange }: ToolUpl
 
   return (
     <section className="space-y-3" aria-labelledby="tool-upload-heading">
-      <h2 id="tool-upload-heading" className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500">
+      <h2
+        id="tool-upload-heading"
+        className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500"
+      >
         Upload files
       </h2>
 
@@ -31,7 +34,10 @@ export function ToolUploader({ accept, maxFiles, files, onFilesChange }: ToolUpl
       {files.length > 0 ? (
         <ul className="space-y-2" aria-label="Selected files">
           {files.map((file) => (
-            <li key={file.name} className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
+            <li
+              key={file.name}
+              className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700"
+            >
               {file.name}
             </li>
           ))}

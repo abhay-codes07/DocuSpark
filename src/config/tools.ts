@@ -52,7 +52,8 @@ export const tools: ToolItem[] = [
     badge: "Reliable",
     icon: "word",
     mode: "word_to_pdf",
-    accept: ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    accept:
+      ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     minFiles: 1,
     maxFiles: 1,
   },

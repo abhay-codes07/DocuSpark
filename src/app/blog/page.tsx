@@ -17,9 +17,16 @@ export default function BlogPage() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           {blogPreviewPosts.map((post) => (
-            <article key={post.slug} className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-              <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">{post.publishedAt}</p>
-              <h2 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900">{post.title}</h2>
+            <article
+              key={post.slug}
+              className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
+            >
+              <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">
+                {post.publishedAt}
+              </p>
+              <h2 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900">
+                {post.title}
+              </h2>
               <p className="mt-2 text-sm leading-6 text-zinc-600">{post.excerpt}</p>
               <Link
                 href={`/blog/${post.slug}`}

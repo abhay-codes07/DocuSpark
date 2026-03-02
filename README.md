@@ -62,3 +62,9 @@ npm run build
 - Added a reusable `ToolCard` component with keyboard-friendly interactions.
 - Added a six-card tools grid section on the homepage with icon mapping from Lucide.
 - Added dynamic placeholder pages for each tool route to avoid broken links.
+
+## Phase 5 Notes
+
+- Added a 3-step “How It Works” section with icon + text cards.
+- Included scroll-triggered reveal animation using `IntersectionObserver`.
+- Added reduced-motion support and graceful fallback for non-supporting environments.

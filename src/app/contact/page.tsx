@@ -20,7 +20,7 @@ export default function ContactPage() {
             Send feedback, report issues, or share ideas for new document workflows.
           </h1>
           <p className="max-w-2xl text-base leading-7 text-zinc-600">
-            We read every message and use it to improve DocuSpark’s usability and roadmap.
+            We read every message and use it to improve DocuSparkï¿½s usability and roadmap.
           </p>
         </section>
 
@@ -40,7 +40,9 @@ export default function ContactPage() {
               <div className="mb-3 inline-flex rounded-xl border border-sky-100 bg-sky-50 p-2 text-sky-600">
                 <Mail className="size-5" aria-hidden="true" />
               </div>
-              <h3 className="text-base font-semibold tracking-tight text-zinc-900">Email updates</h3>
+              <h3 className="text-base font-semibold tracking-tight text-zinc-900">
+                Email updates
+              </h3>
               <p className="mt-2 text-sm leading-6 text-zinc-600">
                 Product feedback and support questions are tracked through a simple email flow.
               </p>
@@ -50,7 +52,9 @@ export default function ContactPage() {
               <div className="mb-3 inline-flex rounded-xl border border-sky-100 bg-sky-50 p-2 text-sky-600">
                 <TimerReset className="size-5" aria-hidden="true" />
               </div>
-              <h3 className="text-base font-semibold tracking-tight text-zinc-900">Response window</h3>
+              <h3 className="text-base font-semibold tracking-tight text-zinc-900">
+                Response window
+              </h3>
               <p className="mt-2 text-sm leading-6 text-zinc-600">
                 Typical response time is within 1-2 working days depending on message volume.
               </p>
@@ -60,7 +64,9 @@ export default function ContactPage() {
               <div className="mb-3 inline-flex rounded-xl border border-zinc-200 bg-white p-2 text-zinc-700">
                 <MessageSquare className="size-5" aria-hidden="true" />
               </div>
-              <h3 className="text-base font-semibold tracking-tight text-zinc-900">What to include</h3>
+              <h3 className="text-base font-semibold tracking-tight text-zinc-900">
+                What to include
+              </h3>
               <p className="mt-2 text-sm leading-6 text-zinc-700">
                 Share the tool name, expected outcome, and current issue for faster support.
               </p>

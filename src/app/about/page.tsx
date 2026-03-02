@@ -19,19 +19,27 @@ export default function AboutPage() {
             Building practical document tools that feel fast, calm, and dependable.
           </h1>
           <p className="max-w-2xl text-base leading-7 text-zinc-600">
-            DocuSpark is inspired by the need for lightweight file workflows that focus on what users
-            actually need day to day.
+            DocuSpark is inspired by the need for lightweight file workflows that focus on what
+            users actually need day to day.
           </p>
         </section>
 
         <section aria-labelledby="about-highlights-heading" className="space-y-5">
-          <h2 id="about-highlights-heading" className="text-2xl font-semibold tracking-tight text-zinc-900">
+          <h2
+            id="about-highlights-heading"
+            className="text-2xl font-semibold tracking-tight text-zinc-900"
+          >
             What we optimize for
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {aboutHighlights.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-                <h3 className="text-base font-semibold tracking-tight text-zinc-900">{item.title}</h3>
+              <article
+                key={item.title}
+                className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
+              >
+                <h3 className="text-base font-semibold tracking-tight text-zinc-900">
+                  {item.title}
+                </h3>
                 <p className="mt-2 text-sm leading-6 text-zinc-600">{item.description}</p>
               </article>
             ))}
@@ -39,13 +47,18 @@ export default function AboutPage() {
         </section>
 
         <section aria-labelledby="about-principles-heading" className="space-y-5">
-          <h2 id="about-principles-heading" className="text-2xl font-semibold tracking-tight text-zinc-900">
+          <h2
+            id="about-principles-heading"
+            className="text-2xl font-semibold tracking-tight text-zinc-900"
+          >
             Guiding principles
           </h2>
           <ul className="grid gap-4 md:grid-cols-3">
             {aboutPrinciples.map((item) => (
               <li key={item.title} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500">{item.title}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500">
+                  {item.title}
+                </p>
                 <p className="mt-2 text-sm leading-6 text-zinc-700">{item.description}</p>
               </li>
             ))}

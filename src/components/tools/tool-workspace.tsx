@@ -14,6 +14,10 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const [progress, setProgress] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [splitRange, setSplitRange] = useState("1-3");
+  const [compressionLevel, setCompressionLevel] = useState("balanced");
+  const [pageSize, setPageSize] = useState("a4");
+  const [password, setPassword] = useState("");
 
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
@@ -45,6 +49,86 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
     }, 120);
   }
 
+  function renderModeOptions() {
+    if (tool.mode === "split_pdf") {
+      return (
+        <div className="space-y-1.5">
+          <label htmlFor="split-range" className="text-sm font-medium text-zinc-800">
+            Page range
+          </label>
+          <input
+            id="split-range"
+            type="text"
+            value={splitRange}
+            onChange={(event) => setSplitRange(event.target.value)}
+            className="form-input"
+            placeholder="e.g. 1-3, 7-9"
+          />
+        </div>
+      );
+    }
+
+    if (tool.mode === "compress_pdf") {
+      return (
+        <div className="space-y-1.5">
+          <label htmlFor="compression-level" className="text-sm font-medium text-zinc-800">
+            Compression level
+          </label>
+          <select
+            id="compression-level"
+            value={compressionLevel}
+            onChange={(event) => setCompressionLevel(event.target.value)}
+            className="form-input"
+          >
+            <option value="light">Light</option>
+            <option value="balanced">Balanced</option>
+            <option value="strong">Strong</option>
+          </select>
+        </div>
+      );
+    }
+
+    if (tool.mode === "image_to_pdf") {
+      return (
+        <div className="space-y-1.5">
+          <label htmlFor="page-size" className="text-sm font-medium text-zinc-800">
+            Output page size
+          </label>
+          <select
+            id="page-size"
+            value={pageSize}
+            onChange={(event) => setPageSize(event.target.value)}
+            className="form-input"
+          >
+            <option value="a4">A4</option>
+            <option value="letter">Letter</option>
+            <option value="fit">Fit to image</option>
+          </select>
+        </div>
+      );
+    }
+
+    if (tool.mode === "protect_pdf") {
+      return (
+        <div className="space-y-1.5">
+          <label htmlFor="pdf-password" className="text-sm font-medium text-zinc-800">
+            Set password
+          </label>
+          <input
+            id="pdf-password"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            className="form-input"
+            placeholder="Enter password"
+          />
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   return (
     <div className="space-y-6 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8">
       <div className="space-y-3">
@@ -57,6 +141,8 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
       <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600">
         Upload between {tool.minFiles} and {tool.maxFiles} file(s) to run this tool.
       </div>
+
+      {renderModeOptions()}
 
       <button
         type="button"

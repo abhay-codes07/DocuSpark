@@ -80,6 +80,9 @@ export function ContactForm() {
             id="name"
             name="name"
             type="text"
+            autoComplete="name"
+            required
+            minLength={2}
             value={values.name}
             onChange={(event) => onChange("name", event.target.value)}
             className="form-input"
@@ -101,6 +104,8 @@ export function ContactForm() {
             id="email"
             name="email"
             type="email"
+            autoComplete="email"
+            required
             value={values.email}
             onChange={(event) => onChange("email", event.target.value)}
             className="form-input"
@@ -123,6 +128,9 @@ export function ContactForm() {
           id="subject"
           name="subject"
           type="text"
+          autoComplete="off"
+          required
+          minLength={3}
           value={values.subject}
           onChange={(event) => onChange("subject", event.target.value)}
           className="form-input"
@@ -144,6 +152,8 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={6}
+          required
+          minLength={20}
           value={values.message}
           onChange={(event) => onChange("message", event.target.value)}
           className="form-input resize-y"
@@ -164,7 +174,7 @@ export function ContactForm() {
         Send message
       </button>
 
-      <p aria-live="polite" className="text-sm text-emerald-700">
+      <p aria-live="polite" role="status" className="min-h-5 text-sm text-emerald-700">
         {isSubmitted ? "Thanks! Your message passed validation and is ready to be sent." : ""}
       </p>
     </form>

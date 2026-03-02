@@ -24,11 +24,20 @@ export function ToolUploader({ accept, maxFiles, files, onFilesChange }: ToolUpl
         Upload files
       </h2>
 
-      <label className="focus-ring ui-transition block cursor-pointer rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-sky-300 hover:bg-sky-50/40">
-        <input type="file" accept={accept} multiple className="sr-only" onChange={onInputChange} />
+      <label className="ui-transition block cursor-pointer rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-sky-300 hover:bg-sky-50/40 has-[:focus-visible]:border-sky-400 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sky-300/60">
+        <input
+          type="file"
+          accept={accept}
+          multiple
+          className="sr-only"
+          onChange={onInputChange}
+          aria-describedby="tool-upload-note"
+        />
         <UploadCloud className="mx-auto mb-2 size-6 text-sky-600" aria-hidden="true" />
         <p className="text-sm font-medium text-zinc-800">Click to select files</p>
-        <p className="mt-1 text-xs text-zinc-500">Accepted: {accept.replaceAll(",", ", ")}</p>
+        <p id="tool-upload-note" className="mt-1 text-xs text-zinc-500">
+          Accepted: {accept.replaceAll(",", ", ")}
+        </p>
       </label>
 
       {files.length > 0 ? (

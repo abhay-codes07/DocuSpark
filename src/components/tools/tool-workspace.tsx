@@ -7,6 +7,7 @@ import {
   getMockDurationMs,
   getMockResultName,
   getToolActionLabel,
+  runRealToolEngine,
 } from "@/lib";
 import { ToolProgress, ToolUploader } from "@/components/tools";
 
@@ -20,6 +21,7 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [splitRange, setSplitRange] = useState("1-3");
   const [compressionLevel, setCompressionLevel] = useState("balanced");
   const [pageSize, setPageSize] = useState("a4");
@@ -46,6 +48,7 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
     setIsProcessing(true);
     setProgress(0);
     setResult(null);
+    setError(null);
     if (downloadUrlRef.current) {
       URL.revokeObjectURL(downloadUrlRef.current);
       downloadUrlRef.current = null;
@@ -82,6 +85,47 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
         setResult(outputName);
       }
     }, 120);
+  }
+
+  async function runRealProcess() {
+    if (!canProcess) {
+      return;
+    }
+
+    setIsProcessing(true);
+    setProgress(0);
+    setResult(null);
+    setError(null);
+
+    if (downloadUrlRef.current) {
+      URL.revokeObjectURL(downloadUrlRef.current);
+      downloadUrlRef.current = null;
+      setDownloadUrl(null);
+    }
+
+    try {
+      const output = await runRealToolEngine({
+        mode: tool.mode,
+        files,
+        splitRange,
+        compressionLevel,
+        pageSize,
+        onProgress: setProgress,
+      });
+
+      const nextUrl = URL.createObjectURL(output.blob);
+      downloadUrlRef.current = nextUrl;
+      setDownloadUrl(nextUrl);
+      setResult(output.filename);
+    } catch (processingError) {
+      const message =
+        processingError instanceof Error
+          ? processingError.message
+          : "Processing failed. Please try again.";
+      setError(message);
+    } finally {
+      setIsProcessing(false);
+    }
   }
 
   useEffect(() => {
@@ -199,18 +243,31 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
       <button
         type="button"
         disabled={!canProcess}
-        onClick={runMockProcess}
+        onClick={tool.implementation === "real_client" ? runRealProcess : runMockProcess}
         className="focus-ring ui-transition inline-flex rounded-xl bg-sky-500 px-5 py-2.5 text-sm font-medium text-white enabled:hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {actionLabel}
       </button>
 
+      {tool.implementation !== "real_client" ? (
+        <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          This conversion currently needs a server-side engine. You can still test the interface
+          with mock output.
+        </p>
+      ) : null}
+
       <ToolProgress value={progress} isProcessing={isProcessing} />
+
+      {error ? (
+        <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </p>
+      ) : null}
 
       {result ? (
         <div className="space-y-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
           <p>
-            Mock complete. Output ready: <strong>{result}</strong>
+            Output ready: <strong>{result}</strong>
           </p>
           {downloadUrl ? (
             <a

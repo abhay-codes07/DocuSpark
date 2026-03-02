@@ -6,6 +6,8 @@ export type ToolMode =
   | "word_to_pdf"
   | "protect_pdf";
 
+export type ToolImplementation = "real_client" | "mock";
+
 export type ToolItem = {
   title: string;
   description: string;
@@ -13,6 +15,7 @@ export type ToolItem = {
   badge: string;
   icon: "merge" | "split" | "compress" | "image" | "word" | "secure";
   mode: ToolMode;
+  implementation: ToolImplementation;
   accept: string;
   minFiles: number;
   maxFiles: number;

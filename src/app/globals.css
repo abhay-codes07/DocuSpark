@@ -108,6 +108,10 @@ body {
   animation: testimonials-scroll 24s linear infinite;
 }
 
+.testimonials-marquee-mask:hover .testimonials-marquee-track {
+  animation-play-state: paused;
+}
+
 @keyframes testimonials-scroll {
   from {
     transform: translateX(0);

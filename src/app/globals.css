@@ -163,6 +163,24 @@ body {
   font-size: 0.9em;
 }
 
+.form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #d4dbe5;
+  background: #fff;
+  padding: 0.6rem 0.8rem;
+  color: #0f172a;
+  transition:
+    border-color 150ms ease-out,
+    box-shadow 150ms ease-out;
+}
+
+.form-input:focus-visible {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
 .hero-surface {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #e2e8f0;

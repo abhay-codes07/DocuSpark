@@ -127,6 +127,42 @@ body {
   }
 }
 
+.mdx-content h1 {
+  margin-top: 1rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.mdx-content h2 {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.mdx-content p {
+  margin-top: 0.9rem;
+  color: #334155;
+  line-height: 1.75;
+}
+
+.mdx-content ul {
+  margin-top: 0.75rem;
+  list-style: disc;
+  padding-left: 1.5rem;
+  color: #334155;
+}
+
+.mdx-content code {
+  border-radius: 0.4rem;
+  background: #f1f5f9;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.9em;
+}
+
 .hero-surface {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #e2e8f0;

@@ -27,23 +27,13 @@ npm run build
 
 ## Branch Workflow
 
-- `main`: production
-- `develop`: integration
-- `phase-X`: implementation branches for each project phase
+- `main`: single production branch (Phase 3 onward)
 
 ## Contributing
 
-1. Create a branch from `develop`.
-2. Keep commits small and scoped.
-3. Use conventional commit messages (`feat:`, `fix:`, `refactor:`, `style:`, `chore:`, `docs:`).
-4. Open a PR to `develop` after validation checks pass.
-
-## Phase Delivery Rules
-
-- Implement work one phase at a time.
-- Keep the app buildable after every commit.
-- Push after each commit while working on a phase branch.
-- Merge phase branch into `develop` before starting the next phase.
+1. Commit directly to `main` in small scoped changes.
+2. Keep commits clean and conventional (`feat:`, `fix:`, `refactor:`, `style:`, `chore:`, `docs:`).
+3. Run quality checks before pushing.
 
 ## Commit Convention
 
@@ -60,3 +50,9 @@ npm run build
 - Desktop navigation appears at `md` and above.
 - Mobile navigation uses a right-side slide panel with overlay, Escape close, and route-change close.
 - Skip link support is enabled for keyboard users.
+
+## Phase 3 Notes
+
+- Homepage now uses a centered hero section component.
+- Hero includes two CTAs, subtle motion, and a dedicated illustration placeholder.
+- Responsive tuning ensures clean layout from small mobile screens to desktop.

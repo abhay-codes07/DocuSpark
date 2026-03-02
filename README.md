@@ -7,6 +7,7 @@ Think: merge, split, compress, and convert files in a clean UI without SaaS clut
 ## Why This Exists
 
 Most PDF/file tools are either:
+
 - overloaded with upsells and distractions, or
 - functional but visually outdated and slow.
 

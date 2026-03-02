@@ -66,7 +66,7 @@ npm run build
 
 ## Phase 5 Notes
 
-- Added a 3-step ï¿½How It Worksï¿½ section with icon + text cards.
+- Added a 3-step “How It Works” section with icon + text cards.
 - Included scroll-triggered reveal animation using `IntersectionObserver`.
 - Added reduced-motion support and graceful fallback for non-supporting environments.
 
@@ -88,3 +88,10 @@ npm run build
 - Added `/about` page with product story, highlights, and guiding principles.
 - Added `/contact` page with responsive layout and support information cards.
 - Implemented an accessible frontend-only contact form with client-side validation and success state.
+
+## Phase 9 Notes
+
+- Replaced tool placeholder pages with interactive client-side workspaces.
+- Added file upload support with constraints per tool (accepted types, min/max files).
+- Implemented mock processing with loading states and progress indicator.
+- Added mode-specific mock options for split, compress, image-to-pdf, and protect flows.

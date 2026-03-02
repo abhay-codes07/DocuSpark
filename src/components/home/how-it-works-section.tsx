@@ -79,7 +79,9 @@ export function HowItWorksSection() {
               <span className="mb-3 inline-flex rounded-xl border border-sky-100 bg-sky-50 p-2 text-sky-600">
                 <Icon className="size-5" aria-hidden="true" />
               </span>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">Step {index + 1}</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
+                Step {index + 1}
+              </p>
               <h3 className="text-base font-semibold tracking-tight text-zinc-900">{step.title}</h3>
               <p className="mt-2 text-sm leading-6 text-zinc-600">{step.description}</p>
             </li>

@@ -10,12 +10,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  applicationName: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "pdf tools",
+    "merge pdf",
+    "split pdf",
+    "compress pdf",
+    "image to pdf",
+    "word to pdf",
+    "document tools",
+  ],
+  authors: [{ name: "DocuSpark" }],
+  creator: "DocuSpark",
+  category: "productivity",
   alternates: {
     canonical: "/",
   },
@@ -32,6 +45,11 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "default",
   },
 };
 

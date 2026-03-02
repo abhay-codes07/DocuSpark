@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout";
-import { getAllBlogPosts } from "@/lib";
+import { formatBlogDate, getAllBlogPosts } from "@/lib";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -30,7 +30,7 @@ export default async function BlogPage() {
               className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
             >
               <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">
-                {post.publishedAt}
+                {formatBlogDate(post.publishedAt)}
               </p>
               <h2 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900">
                 {post.title}

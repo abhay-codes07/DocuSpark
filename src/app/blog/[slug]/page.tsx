@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout";
-import { getBlogPostBySlug, getBlogSlugs } from "@/lib";
+import { formatBlogDate, getBlogPostBySlug, getBlogSlugs } from "@/lib";
 import { siteConfig } from "@/config/site";
 
 type BlogPostPageProps = {
@@ -66,7 +66,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.meta.readTime}
           </p>
           <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">{post.meta.title}</h1>
-          <p className="text-sm uppercase tracking-[0.12em] text-zinc-500">{post.meta.publishedAt}</p>
+          <p className="text-sm uppercase tracking-[0.12em] text-zinc-500">
+            {formatBlogDate(post.meta.publishedAt)}
+          </p>
           <div className="mdx-content">
             <Content />
           </div>

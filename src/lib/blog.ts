@@ -47,3 +47,11 @@ export async function getBlogPreviewPosts(count = 4) {
   const posts = await getAllBlogPosts();
   return posts.slice(0, count);
 }
+
+export function formatBlogDate(input: string) {
+  return new Date(input).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}

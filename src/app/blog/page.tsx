@@ -1,8 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Container } from "@/components/layout";
-import { blogPreviewPosts } from "@/config/blog-preview";
+import { getAllBlogPosts } from "@/lib";
 
-export default function BlogPage() {
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Document workflow tips, guides, and best practices from DocuSpark.",
+};
+
+export default async function BlogPage() {
+  const posts = await getAllBlogPosts();
+
   return (
     <main id="main-content" className="page-fade-in min-h-screen bg-background text-foreground">
       <Container className="space-y-8 py-16 sm:py-20">
@@ -16,7 +24,7 @@ export default function BlogPage() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {blogPreviewPosts.map((post) => (
+          {posts.map((post) => (
             <article
               key={post.slug}
               className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"

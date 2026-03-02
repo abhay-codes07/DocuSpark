@@ -14,10 +14,12 @@ export default function Home() {
         <div className="flex min-h-[calc(100vh-4rem)] items-center">
           <HeroSection />
         </div>
-        <ToolsGridSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <BlogPreviewSection />
+        <div className="defer-visibility">
+          <ToolsGridSection />
+          <HowItWorksSection />
+          <TestimonialsSection />
+          <BlogPreviewSection />
+        </div>
       </Container>
     </main>
   );

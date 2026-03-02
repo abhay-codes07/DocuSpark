@@ -181,6 +181,11 @@ body {
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
+.defer-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}
+
 .hero-surface {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #e2e8f0;

@@ -9,6 +9,7 @@ DocuSpark is a modern document tools web app built with Next.js App Router, Type
 - Tailwind CSS
 - Inter font
 - Lucide icons
+- MDX (blog content)
 
 ## Development
 
@@ -65,7 +66,7 @@ npm run build
 
 ## Phase 5 Notes
 
-- Added a 3-step ï¿½How It Worksï¿½ section with icon + text cards.
+- Added a 3-step “How It Works” section with icon + text cards.
 - Included scroll-triggered reveal animation using `IntersectionObserver`.
 - Added reduced-motion support and graceful fallback for non-supporting environments.
 
@@ -73,4 +74,11 @@ npm run build
 
 - Added an auto-scrolling testimonials section with subtle motion and hover pause.
 - Added a responsive 4-card blog preview section on the homepage.
-- Added placeholder `/blog` and `/blog/[slug]` routes so preview links remain valid.
+- Added initial `/blog` and `/blog/[slug]` routes for preview navigation.
+
+## Phase 7 Notes
+
+- Implemented a true MDX-backed blog system with 4 pre-filled posts in `src/content/blog`.
+- Added a blog loader utility for slug generation, sorting, previews, and post fetching.
+- Added static dynamic routing for posts and per-post SEO metadata generation.
+- Homepage blog previews now read from real blog metadata instead of hardcoded placeholders.

@@ -82,3 +82,9 @@ npm run build
 - Added a blog loader utility for slug generation, sorting, previews, and post fetching.
 - Added static dynamic routing for posts and per-post SEO metadata generation.
 - Homepage blog previews now read from real blog metadata instead of hardcoded placeholders.
+
+## Phase 8 Notes
+
+- Added `/about` page with product story, highlights, and guiding principles.
+- Added `/contact` page with responsive layout and support information cards.
+- Implemented an accessible frontend-only contact form with client-side validation and success state.

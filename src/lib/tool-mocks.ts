@@ -56,3 +56,48 @@ export function getMockDurationMs(mode: ToolMode) {
       return 2500;
   }
 }
+
+type BuildMockOutputParams = {
+  mode: ToolMode;
+  files: File[];
+  splitRange?: string;
+  compressionLevel?: string;
+  pageSize?: string;
+  hasPassword?: boolean;
+};
+
+export function buildMockOutputBlob({
+  mode,
+  files,
+  splitRange,
+  compressionLevel,
+  pageSize,
+  hasPassword,
+}: BuildMockOutputParams) {
+  const lines = [
+    "DocuSpark Mock Output",
+    `Mode: ${mode}`,
+    `Generated: ${new Date().toISOString()}`,
+    `Files: ${files.map((file) => file.name).join(", ") || "none"}`,
+  ];
+
+  if (splitRange) {
+    lines.push(`Split Range: ${splitRange}`);
+  }
+
+  if (compressionLevel) {
+    lines.push(`Compression: ${compressionLevel}`);
+  }
+
+  if (pageSize) {
+    lines.push(`Page Size: ${pageSize}`);
+  }
+
+  if (typeof hasPassword === "boolean") {
+    lines.push(`Password Set: ${hasPassword ? "yes" : "no"}`);
+  }
+
+  const mimeType = mode === "split_pdf" ? "application/zip" : "application/pdf";
+
+  return new Blob([lines.join("\n")], { type: mimeType });
+}

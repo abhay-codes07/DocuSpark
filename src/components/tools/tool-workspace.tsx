@@ -2,7 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ToolItem } from "@/types";
-import { getMockDurationMs, getMockResultName, getToolActionLabel } from "@/lib";
+import {
+  buildMockOutputBlob,
+  getMockDurationMs,
+  getMockResultName,
+  getToolActionLabel,
+} from "@/lib";
 import { ToolProgress, ToolUploader } from "@/components/tools";
 
 type ToolWorkspaceProps = {
@@ -14,11 +19,13 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const [progress, setProgress] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [splitRange, setSplitRange] = useState("1-3");
   const [compressionLevel, setCompressionLevel] = useState("balanced");
   const [pageSize, setPageSize] = useState("a4");
   const [password, setPassword] = useState("");
   const intervalRef = useRef<number | null>(null);
+  const downloadUrlRef = useRef<string | null>(null);
 
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
@@ -39,6 +46,11 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
     setIsProcessing(true);
     setProgress(0);
     setResult(null);
+    if (downloadUrlRef.current) {
+      URL.revokeObjectURL(downloadUrlRef.current);
+      downloadUrlRef.current = null;
+      setDownloadUrl(null);
+    }
 
     const durationMs = getMockDurationMs(tool.mode);
     const startedAt = Date.now();
@@ -54,8 +66,20 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
           window.clearInterval(intervalRef.current);
           intervalRef.current = null;
         }
+        const outputName = getMockResultName(tool.mode);
+        const outputBlob = buildMockOutputBlob({
+          mode: tool.mode,
+          files,
+          splitRange: tool.mode === "split_pdf" ? splitRange : undefined,
+          compressionLevel: tool.mode === "compress_pdf" ? compressionLevel : undefined,
+          pageSize: tool.mode === "image_to_pdf" ? pageSize : undefined,
+          hasPassword: tool.mode === "protect_pdf" ? password.trim().length > 0 : undefined,
+        });
+        const nextDownloadUrl = URL.createObjectURL(outputBlob);
+        downloadUrlRef.current = nextDownloadUrl;
+        setDownloadUrl(nextDownloadUrl);
         setIsProcessing(false);
-        setResult(getMockResultName(tool.mode));
+        setResult(outputName);
       }
     }, 120);
   }
@@ -64,6 +88,9 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
     return () => {
       if (intervalRef.current) {
         window.clearInterval(intervalRef.current);
+      }
+      if (downloadUrlRef.current) {
+        URL.revokeObjectURL(downloadUrlRef.current);
       }
     };
   }, []);
@@ -181,9 +208,20 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
       <ToolProgress value={progress} isProcessing={isProcessing} />
 
       {result ? (
-        <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-          Mock complete. Output ready: <strong>{result}</strong>
-        </p>
+        <div className="space-y-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          <p>
+            Mock complete. Output ready: <strong>{result}</strong>
+          </p>
+          {downloadUrl ? (
+            <a
+              href={downloadUrl}
+              download={result}
+              className="focus-ring ui-transition inline-flex rounded-xl border border-emerald-300 bg-white px-4 py-2 font-medium text-emerald-800 hover:bg-emerald-100"
+            >
+              Download output
+            </a>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

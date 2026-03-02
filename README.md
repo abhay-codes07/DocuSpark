@@ -66,7 +66,7 @@ npm run build
 
 ## Phase 5 Notes
 
-- Added a 3-step ï¿½How It Worksï¿½ section with icon + text cards.
+- Added a 3-step “How It Works” section with icon + text cards.
 - Included scroll-triggered reveal animation using `IntersectionObserver`.
 - Added reduced-motion support and graceful fallback for non-supporting environments.
 
@@ -95,3 +95,12 @@ npm run build
 - Added file upload support with constraints per tool (accepted types, min/max files).
 - Implemented mock processing with loading states and progress indicator.
 - Added mode-specific mock options for split, compress, image-to-pdf, and protect flows.
+
+## Phase 10 Notes
+
+- Added `sitemap.xml` and `robots.txt` via metadata routes.
+- Expanded global SEO metadata and added web app manifest metadata.
+- Hardened Next.js config (`reactStrictMode`, removed powered-by header).
+- Improved accessibility for contact form and uploader focus/semantics.
+- Added custom app loading and 404 experiences.
+- Added below-the-fold render deferral utility for homepage performance.

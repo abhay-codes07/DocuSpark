@@ -6,7 +6,10 @@ export function HeroIllustration() {
       className="hero-illustration relative mx-auto w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm"
       aria-hidden="true"
     >
-      <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-sky-100" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-sky-100"
+        aria-hidden="true"
+      />
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
           <FileText className="mb-2 size-5 text-sky-500" aria-hidden="true" />
@@ -22,7 +25,9 @@ export function HeroIllustration() {
           <Sparkles className="size-4" aria-hidden="true" />
           <span className="text-xs font-semibold uppercase tracking-[0.12em]">Coming next</span>
         </div>
-        <p className="text-sm text-zinc-700">Split, compress, and optimize files with the same simple flow.</p>
+        <p className="text-sm text-zinc-700">
+          Split, compress, and optimize files with the same simple flow.
+        </p>
       </div>
     </div>
   );

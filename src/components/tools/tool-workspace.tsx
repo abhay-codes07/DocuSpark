@@ -22,6 +22,12 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
   const canProcess = files.length >= tool.minFiles && files.length <= tool.maxFiles && !isProcessing;
+  const fileHint =
+    files.length < tool.minFiles
+      ? `Add at least ${tool.minFiles} file(s) to continue.`
+      : files.length > tool.maxFiles
+        ? `This tool supports up to ${tool.maxFiles} file(s).`
+        : `${files.length} file(s) selected.`;
 
   function runMockProcess() {
     if (!canProcess) {
@@ -140,6 +146,7 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
 
       <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-600">
         Upload between {tool.minFiles} and {tool.maxFiles} file(s) to run this tool.
+        <p className="mt-1 text-zinc-500">{fileHint}</p>
       </div>
 
       {renderModeOptions()}

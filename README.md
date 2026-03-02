@@ -1,6 +1,41 @@
 # DocuSpark
 
-DocuSpark is a modern document tools web app built with Next.js App Router, TypeScript, and Tailwind CSS.
+**DocuSpark is a fast, minimal document-tools web app for everyday file workflows.**
+
+Think: merge, split, compress, and convert files in a clean UI without SaaS clutter.
+
+## Why This Exists
+
+Most PDF/file tools are either:
+- overloaded with upsells and distractions, or
+- functional but visually outdated and slow.
+
+DocuSpark is built to be the opposite: simple, modern, and fast by default.
+
+## What It Does Today
+
+- Modern homepage with structured sections:
+  - Hero
+  - Tools Grid
+  - How It Works
+  - Testimonials
+  - Blog Preview
+- Tool pages with client-side mock workflows:
+  - Merge PDF
+  - Split PDF
+  - Compress PDF
+  - Image to PDF
+  - Word to PDF
+  - Protect PDF
+- Progress + loading states for tool actions
+- MDX-powered blog system with dynamic routing (`/blog/[slug]`)
+- About + Contact pages
+- Accessible frontend-only contact form with validation
+- SEO hardening:
+  - Metadata
+  - `sitemap.xml`
+  - `robots.txt`
+  - Manifest route
 
 ## Tech Stack
 
@@ -9,14 +44,23 @@ DocuSpark is a modern document tools web app built with Next.js App Router, Type
 - Tailwind CSS
 - Inter font
 - Lucide icons
-- MDX (blog content)
+- MDX
 
-## Development
+## Product Principles
+
+- **Clarity first**: each screen should be obvious in under 3 seconds
+- **Fast interactions**: no heavy UI or unnecessary dependencies
+- **Accessible by default**: keyboard navigation, semantic HTML, visible focus
+- **Useful motion only**: subtle animations that support comprehension
+
+## Local Setup
 
 ```bash
 npm install
 npm run dev
 ```
+
+Open `http://localhost:3000`.
 
 ## Quality Checks
 
@@ -26,81 +70,28 @@ npm run typecheck
 npm run build
 ```
 
-## Branch Workflow
+## Project Structure
 
-- `main`: single production branch (Phase 3 onward)
+```text
+src/
+  app/                 # Routes (home, blog, tools, about, contact)
+  components/          # UI + feature components
+  config/              # Static config/content maps
+  content/blog/        # MDX posts
+  lib/                 # Utilities + blog/tool helpers
+  types/               # Shared TypeScript types
+```
 
-## Contributing
+## Branching
 
-1. Commit directly to `main` in small scoped changes.
-2. Keep commits clean and conventional (`feat:`, `fix:`, `refactor:`, `style:`, `chore:`, `docs:`).
-3. Run quality checks before pushing.
+- Single branch workflow: `main`
 
-## Commit Convention
+## Status
 
-- `feat:` new user-facing capability
-- `fix:` bug fix or accessibility correction
-- `refactor:` structural improvement without behavior change
-- `style:` visual or styling-only updates
-- `chore:` tooling, config, or maintenance
-- `docs:` documentation changes
+Phase 1 through Phase 10 are implemented on `main`.
 
-## Phase 2 Notes
+## Next Focus
 
-- Navbar is globally rendered from `src/app/layout.tsx`.
-- Desktop navigation appears at `md` and above.
-- Mobile navigation uses a right-side slide panel with overlay and Escape close.
-- Skip link support is enabled for keyboard users.
-
-## Phase 3 Notes
-
-- Homepage now uses a centered hero section component.
-- Hero includes two CTAs, subtle motion, and a dedicated illustration placeholder.
-- Responsive tuning ensures clean layout from small mobile screens to desktop.
-
-## Phase 4 Notes
-
-- Added a reusable `ToolCard` component with keyboard-friendly interactions.
-- Added a six-card tools grid section on the homepage with icon mapping from Lucide.
-- Added dynamic placeholder pages for each tool route to avoid broken links.
-
-## Phase 5 Notes
-
-- Added a 3-step �How It Works� section with icon + text cards.
-- Included scroll-triggered reveal animation using `IntersectionObserver`.
-- Added reduced-motion support and graceful fallback for non-supporting environments.
-
-## Phase 6 Notes
-
-- Added an auto-scrolling testimonials section with subtle motion and hover pause.
-- Added a responsive 4-card blog preview section on the homepage.
-- Added initial `/blog` and `/blog/[slug]` routes for preview navigation.
-
-## Phase 7 Notes
-
-- Implemented a true MDX-backed blog system with 4 pre-filled posts in `src/content/blog`.
-- Added a blog loader utility for slug generation, sorting, previews, and post fetching.
-- Added static dynamic routing for posts and per-post SEO metadata generation.
-- Homepage blog previews now read from real blog metadata instead of hardcoded placeholders.
-
-## Phase 8 Notes
-
-- Added `/about` page with product story, highlights, and guiding principles.
-- Added `/contact` page with responsive layout and support information cards.
-- Implemented an accessible frontend-only contact form with client-side validation and success state.
-
-## Phase 9 Notes
-
-- Replaced tool placeholder pages with interactive client-side workspaces.
-- Added file upload support with constraints per tool (accepted types, min/max files).
-- Implemented mock processing with loading states and progress indicator.
-- Added mode-specific mock options for split, compress, image-to-pdf, and protect flows.
-
-## Phase 10 Notes
-
-- Added `sitemap.xml` and `robots.txt` via metadata routes.
-- Expanded global SEO metadata and added web app manifest metadata.
-- Hardened Next.js config (`reactStrictMode`, removed powered-by header).
-- Improved accessibility for contact form and uploader focus/semantics.
-- Added custom app loading and 404 experiences.
-- Added below-the-fold render deferral utility for homepage performance.
+- Replace tool mocks with real processing pipeline where feasible
+- Add analytics + real user feedback loop
+- Continue performance and accessibility tuning based on Lighthouse + usage data

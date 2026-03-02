@@ -2,7 +2,7 @@
 
 import { Download, SlidersHorizontal, Upload } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { howItWorksSteps } from "@/config/how-it-works";
 import type { HowItWorksStep } from "@/types";
 
@@ -13,7 +13,6 @@ const iconByType: Record<HowItWorksStep["icon"], LucideIcon> = {
 };
 
 export function HowItWorksSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -23,15 +22,21 @@ export function HowItWorksSection() {
       return;
     }
 
+    const revealCards = () => {
+      target.querySelectorAll(".how-step-card").forEach((card) => {
+        card.classList.add("how-step-card-visible");
+      });
+    };
+
     if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
-      setIsVisible(true);
+      revealCards();
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          revealCards();
           observer.disconnect();
         }
       },
@@ -71,9 +76,7 @@ export function HowItWorksSection() {
           return (
             <li
               key={step.title}
-              className={`how-step-card rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm ${
-                isVisible ? "how-step-card-visible" : ""
-              }`}
+              className="how-step-card rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
               style={{ transitionDelay: `${index * 90}ms` }}
             >
               <span className="mb-3 inline-flex rounded-xl border border-sky-100 bg-sky-50 p-2 text-sky-600">

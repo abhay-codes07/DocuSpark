@@ -21,13 +21,9 @@ DocuSpark is built to be the opposite: simple, modern, and fast by default.
   - How It Works
   - Testimonials
   - Blog Preview
-- Tool pages with client-side mock workflows:
-  - Merge PDF
-  - Split PDF
-  - Compress PDF
-  - Image to PDF
-  - Word to PDF
-  - Protect PDF
+- Tool pages with real and mock workflows:
+  - Real client-side: Merge PDF, Split PDF, Compress PDF, Image to PDF
+  - Real server-side: Word to PDF, Protect PDF (requires local engines)
 - Progress + loading states for tool actions
 - MDX-powered blog system with dynamic routing (`/blog/[slug]`)
 - About + Contact pages
@@ -46,6 +42,8 @@ DocuSpark is built to be the opposite: simple, modern, and fast by default.
 - Inter font
 - Lucide icons
 - MDX
+- pdf-lib
+- JSZip
 
 ## Product Principles
 
@@ -71,15 +69,24 @@ npm run typecheck
 npm run build
 ```
 
+## Server Engine Prerequisites (for true Word->PDF + Protect PDF)
+
+Install these on the machine running Next.js:
+
+- LibreOffice (`soffice` on PATH) for Word -> PDF
+- qpdf (`qpdf` on PATH) for PDF password protection
+
+If not installed, the app returns clear server error messages for those tools.
+
 ## Project Structure
 
 ```text
 src/
-  app/                 # Routes (home, blog, tools, about, contact)
+  app/                 # Routes + API routes
   components/          # UI + feature components
   config/              # Static config/content maps
   content/blog/        # MDX posts
-  lib/                 # Utilities + blog/tool helpers
+  lib/                 # Utilities + blog/tool engines
   types/               # Shared TypeScript types
 ```
 
@@ -93,6 +100,7 @@ Phase 1 through Phase 10 are implemented on `main`.
 
 ## Next Focus
 
-- Replace tool mocks with real processing pipeline where feasible
+- Add worker queue and background jobs for large-file server processing
+- Add robust file size limits + virus scanning for production upload safety
 - Add analytics + real user feedback loop
-- Continue performance and accessibility tuning based on Lighthouse + usage data
+- Continue Lighthouse + accessibility tuning

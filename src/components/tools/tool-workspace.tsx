@@ -32,7 +32,10 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
   const actionLabel = useMemo(() => getToolActionLabel(tool.mode), [tool.mode]);
 
   const canProcess =
-    files.length >= tool.minFiles && files.length <= tool.maxFiles && !isProcessing;
+    files.length >= tool.minFiles &&
+    files.length <= tool.maxFiles &&
+    !isProcessing &&
+    (tool.mode !== "protect_pdf" || password.trim().length >= 4);
   const fileHint =
     files.length < tool.minFiles
       ? `Add at least ${tool.minFiles} file(s) to continue.`
@@ -124,6 +127,65 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
           : "Processing failed. Please try again.";
       setError(message);
     } finally {
+      setIsProcessing(false);
+    }
+  }
+
+  async function runServerProcess() {
+    if (!canProcess) {
+      return;
+    }
+
+    setIsProcessing(true);
+    setProgress(5);
+    setResult(null);
+    setError(null);
+
+    if (downloadUrlRef.current) {
+      URL.revokeObjectURL(downloadUrlRef.current);
+      downloadUrlRef.current = null;
+      setDownloadUrl(null);
+    }
+
+    const fakeProgress = window.setInterval(() => {
+      setProgress((prev) => (prev >= 90 ? prev : prev + 7));
+    }, 180);
+
+    try {
+      const payload = new FormData();
+      payload.append("mode", tool.mode);
+      files.forEach((file) => payload.append("files", file));
+      if (tool.mode === "protect_pdf") {
+        payload.append("password", password);
+      }
+
+      const response = await fetch("/api/tools/process", {
+        method: "POST",
+        body: payload,
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? "Server processing failed.");
+      }
+
+      const contentDisposition = response.headers.get("content-disposition") ?? "";
+      const match = contentDisposition.match(/filename=\"?([^\";]+)\"?/i);
+      const filename = match?.[1] ?? getMockResultName(tool.mode);
+      const blob = await response.blob();
+      const nextUrl = URL.createObjectURL(blob);
+      downloadUrlRef.current = nextUrl;
+      setDownloadUrl(nextUrl);
+      setResult(filename);
+      setProgress(100);
+    } catch (processingError) {
+      const message =
+        processingError instanceof Error
+          ? processingError.message
+          : "Server processing failed. Please try again.";
+      setError(message);
+    } finally {
+      window.clearInterval(fakeProgress);
       setIsProcessing(false);
     }
   }
@@ -243,13 +305,25 @@ export function ToolWorkspace({ tool }: ToolWorkspaceProps) {
       <button
         type="button"
         disabled={!canProcess}
-        onClick={tool.implementation === "real_client" ? runRealProcess : runMockProcess}
+        onClick={
+          tool.implementation === "real_client"
+            ? runRealProcess
+            : tool.implementation === "real_server"
+              ? runServerProcess
+              : runMockProcess
+        }
         className="focus-ring ui-transition inline-flex rounded-xl bg-sky-500 px-5 py-2.5 text-sm font-medium text-white enabled:hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {actionLabel}
       </button>
 
-      {tool.implementation !== "real_client" ? (
+      {tool.implementation === "real_server" ? (
+        <p className="rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-800">
+          Server-side conversion is enabled for this tool.
+        </p>
+      ) : null}
+
+      {tool.implementation === "mock" ? (
         <p className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           This conversion currently needs a server-side engine. You can still test the interface
           with mock output.

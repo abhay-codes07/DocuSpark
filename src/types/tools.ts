@@ -6,7 +6,7 @@ export type ToolMode =
   | "word_to_pdf"
   | "protect_pdf";
 
-export type ToolImplementation = "real_client" | "mock";
+export type ToolImplementation = "real_client" | "real_server" | "mock";
 
 export type ToolItem = {
   title: string;

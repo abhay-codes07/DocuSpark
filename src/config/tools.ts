@@ -56,7 +56,7 @@ export const tools: ToolItem[] = [
     badge: "Reliable",
     icon: "word",
     mode: "word_to_pdf",
-    implementation: "mock",
+    implementation: "real_server",
     accept:
       ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     minFiles: 1,
@@ -69,7 +69,7 @@ export const tools: ToolItem[] = [
     badge: "Secure",
     icon: "secure",
     mode: "protect_pdf",
-    implementation: "mock",
+    implementation: "real_server",
     accept: ".pdf,application/pdf",
     minFiles: 1,
     maxFiles: 1,

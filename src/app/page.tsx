@@ -1,5 +1,11 @@
 import { Container } from "@/components/layout";
-import { HeroSection, HowItWorksSection, ToolsGridSection } from "@/components/home";
+import {
+  BlogPreviewSection,
+  HeroSection,
+  HowItWorksSection,
+  TestimonialsSection,
+  ToolsGridSection,
+} from "@/components/home";
 
 export default function Home() {
   return (
@@ -10,6 +16,8 @@ export default function Home() {
         </div>
         <ToolsGridSection />
         <HowItWorksSection />
+        <TestimonialsSection />
+        <BlogPreviewSection />
       </Container>
     </main>
   );

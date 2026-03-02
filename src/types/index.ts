@@ -11,3 +11,4 @@ export type SiteConfig = {
 
 export * from "./navigation";
 export * from "./tools";
+export * from "./how-it-works";
